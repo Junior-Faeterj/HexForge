@@ -13,6 +13,7 @@ class_name Player
 @onready var spells: SpellManager = $Components/Spells
 @onready var inventory: InventoryManager = $Components/Inventory
 @onready var hurtbox: Hurtbox = $Hurtbox
+@onready var interact_ray: RayCast2D = $InteractionRay
 @onready var fsm: PlayerFSM = $FSM
 
 @export var stats: PlayerStats
@@ -28,11 +29,16 @@ func _ready() -> void:
 	health.health_depleted.connect(_on_death)
 	hurtbox.received_damage.connect(_on_hurt)
 	hurtbox.received_knockback.connect(_on_knockback)
+	input.interact_requested.connect(_on_interact)
 
 func _process(delta: float) -> void:
 	if stats:
 		health.regenerate(stats.health_regen_rate * delta)
 		mana.regenerate(stats.mana_regen_rate * delta)
+
+	# Update interaction ray direction
+	if input.direction != Vector2.ZERO:
+		interact_ray.target_position = input.direction * 30.0
 
 func _on_hurt(data: AttackData) -> void:
 	health.take_damage(data.damage)
@@ -43,6 +49,12 @@ func _on_hurt(data: AttackData) -> void:
 
 func _on_knockback(force: Vector2) -> void:
 	movement.apply_knockback(force)
+
+func _on_interact() -> void:
+	if interact_ray.is_colliding():
+		var collider = interact_ray.get_collider()
+		if collider.has_method("interact"):
+			collider.interact()
 
 func _on_death() -> void:
 	fsm.transition_to("Death")

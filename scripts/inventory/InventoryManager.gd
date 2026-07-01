@@ -33,7 +33,7 @@ func add_item(item: ItemResource, quantity: int = 1) -> bool:
 	# Find empty slot
 	while quantity > 0:
 		var empty_slot = _find_empty_slot()
-		if empty_slot:
+		if not empty_slot.is_empty():
 			var to_add = min(item.max_stack if item.stackable else 1, quantity)
 			empty_slot.item = item
 			empty_slot.quantity = to_add

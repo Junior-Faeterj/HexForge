@@ -133,6 +133,10 @@ script = ExtResource("17_hurtbox")
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_2")
 
+[node name="InteractionRay" type="RayCast2D" parent="."]
+target_position = Vector2(0, 20)
+collision_mask = 64
+
 [node name="FSM" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("8_fsm")
 initial_state = NodePath("Idle")
