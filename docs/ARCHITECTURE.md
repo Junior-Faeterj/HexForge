@@ -42,6 +42,18 @@ Nodes are built using smaller, reusable "Component" nodes:
 - `HurtboxComponent`
 - `StatsComponent`
 
+## Naming Conventions
+
+To maintain consistency, the following conventions are strictly followed:
+
+- **Folders:** `snake_case` (e.g., `magic_effects/`)
+- **Files (.gd, .tscn, .tres):** `PascalCase` for Scenes/Scripts that represent classes, `snake_case` for generic resources.
+- **Classes:** `PascalCase` (e.g., `class_name PlayerController`)
+- **Variables & Functions:** `snake_case` (e.g., `var player_health`, `func take_damage()`)
+- **Signals:** `snake_case` (e.g., `signal health_changed`)
+- **Constants:** `SCREAMING_SNAKE_CASE` (e.g., `const MAX_HEALTH = 100`)
+- **Private/Internal Members:** Prefix with underscore (e.g., `var _internal_timer`, `func _ready()`)
+
 ## Folder Documentation
 
 ### /assets
