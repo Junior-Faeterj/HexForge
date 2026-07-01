@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://res_cultist"]
+
+[ext_resource type="Script" path="res://scripts/enemy/EnemyStats.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+max_health = 50.0
+movement_speed = 100.0
+attack_damage = 20.0
+detection_range = 300.0
+xp_reward = 50

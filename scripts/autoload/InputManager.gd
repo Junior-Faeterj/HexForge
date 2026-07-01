@@ -14,4 +14,8 @@ func _process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("attack_1"):
 		action_pressed.emit("attack_1")
-	# Add other mapped actions...
+
+	if Input.is_action_just_pressed("spell_1"): action_pressed.emit("spell_1")
+	if Input.is_action_just_pressed("spell_2"): action_pressed.emit("spell_2")
+	if Input.is_action_just_pressed("spell_3"): action_pressed.emit("spell_3")
+	if Input.is_action_just_pressed("spell_4"): action_pressed.emit("spell_4")

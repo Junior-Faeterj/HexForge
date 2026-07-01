@@ -52,6 +52,7 @@ func _execute_cast(spell_res: MagicResource, direction: Vector2) -> void:
 	var spell_instance := spell_res.projectile_scene.instantiate() as SpellBase
 
 	# Set properties BEFORE adding to tree to avoid _ready issues
+	spell_instance.resource = spell_res
 	spell_instance.caster = player
 	spell_instance.direction = direction
 	spell_instance.global_position = player.global_position

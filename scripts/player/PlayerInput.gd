@@ -11,13 +11,14 @@ var last_move_direction: Vector2 = Vector2.RIGHT
 
 func _ready() -> void:
 	InputManager.move_input.connect(_on_move_input)
+	InputManager.action_pressed.connect(_on_action_pressed)
 
-func _process(_delta: float) -> void:
-	# Rely on Autoload data via _on_move_input
-	if Input.is_action_just_pressed("spell_1"): spell_requested.emit(0, last_move_direction)
-	if Input.is_action_just_pressed("spell_2"): spell_requested.emit(1, last_move_direction)
-	if Input.is_action_just_pressed("spell_3"): spell_requested.emit(2, last_move_direction)
-	if Input.is_action_just_pressed("spell_4"): spell_requested.emit(3, last_move_direction)
+func _on_action_pressed(action_name: String) -> void:
+	match action_name:
+		"spell_1": spell_requested.emit(0, last_move_direction)
+		"spell_2": spell_requested.emit(1, last_move_direction)
+		"spell_3": spell_requested.emit(2, last_move_direction)
+		"spell_4": spell_requested.emit(3, last_move_direction)
 
 func _on_move_input(dir: Vector2) -> void:
 	direction = dir
