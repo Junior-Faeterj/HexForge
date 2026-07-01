@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://player01"]
+[gd_scene load_steps=23 format=3 uid="uid://player01"]
 
 [ext_resource type="Script" path="res://scripts/player/Player.gd" id="1_script"]
 [ext_resource type="Script" path="res://scripts/player/PlayerInput.gd" id="2_input"]
@@ -11,6 +11,11 @@
 [ext_resource type="Script" path="res://scripts/player/states/IdleState.gd" id="9_idle"]
 [ext_resource type="Script" path="res://scripts/player/states/MoveState.gd" id="10_move"]
 [ext_resource type="Script" path="res://scripts/player/states/DeathState.gd" id="11_death"]
+[ext_resource type="Script" path="res://scripts/magic/SpellManager.gd" id="12_spells"]
+[ext_resource type="Resource" uid="uid://res_fireball" path="res://resources/magic/Fireball.tres" id="13_fireball"]
+[ext_resource type="Resource" uid="uid://res_ray" path="res://resources/magic/ArcaneRay.tres" id="14_ray"]
+[ext_resource type="Resource" uid="uid://res_explosion" path="res://resources/magic/MysticExplosion.tres" id="15_explosion"]
+[ext_resource type="Resource" uid="uid://res_shield" path="res://resources/magic/ArcaneShield.tres" id="16_shield"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1"]
 radius = 8.0
@@ -107,6 +112,10 @@ script = ExtResource("6_mana")
 [node name="Level" type="Node" parent="Components"]
 script = ExtResource("7_level")
 
+[node name="Spells" type="Node" parent="Components"]
+script = ExtResource("12_spells")
+spells = Array[Resource("res://resources/magic/MagicResource.gd")]([ExtResource("13_fireball"), ExtResource("14_ray"), ExtResource("15_explosion"), ExtResource("16_shield")])
+
 [node name="FSM" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("8_fsm")
 initial_state = NodePath("Idle")
@@ -119,3 +128,5 @@ script = ExtResource("10_move")
 
 [node name="Death" type="Node" parent="FSM"]
 script = ExtResource("11_death")
+
+[connection signal="spell_requested" from="Components/Input" to="Components/Spells" method="cast_spell" binds= [Vector2(1, 0)]]

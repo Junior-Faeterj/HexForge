@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://arcaneray01"]
+
+[ext_resource type="Script" path="res://scripts/magic/ArcaneRay.gd" id="1_ray"]
+
+[node name="ArcaneRay" type="Node2D"]
+script = ExtResource("1_ray")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 100, 0)
+width = 2.0
+default_color = Color(0.5, 0, 1, 1)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(200, 0)
+collision_mask = 4

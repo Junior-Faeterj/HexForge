@@ -10,6 +10,7 @@ class_name Player
 @onready var health: PlayerHealth = $Components/Health
 @onready var mana: PlayerMana = $Components/Mana
 @onready var level: PlayerLevel = $Components/Level
+@onready var spells: SpellManager = $Components/Spells
 @onready var fsm: PlayerFSM = $FSM
 
 @export var stats: PlayerStats
