@@ -2,15 +2,16 @@ extends CharacterBody2D
 class_name EnemyBase
 
 ## EnemyBase
-## Base class for all enemies. Manages components and common logic.
+## Base class for all enemies. Manages components and AI.
 
 @export var stats: EnemyStats
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var health_component: Node = $Components/Health
+@onready var health_component: HealthComponent = $Components/Health
 @onready var hurtbox: Hurtbox = $Hurtbox
-@onready var detection_area: Area2D = $DetectionArea
+@onready var detection_area: DetectionComponent = $DetectionArea
+@onready var fsm: EnemyFSM = $FSM
 
 func _ready() -> void:
 	if stats:
@@ -37,17 +38,17 @@ func _on_hurt(data: AttackData) -> void:
 		GameManager.spawn_damage_text(data.damage, global_position, data.is_critical)
 		_play_hit_feedback()
 
+		# Transition to TakeDamage if alive
+		if health_component.current_health > 0:
+			fsm.transition_to("TakeDamage")
+
 func _play_hit_feedback() -> void:
 	var tween := create_tween()
 	tween.tween_property(sprite, "modulate", Color.RED, 0.1)
 	tween.tween_property(sprite, "modulate", Color.WHITE, 0.1)
 
 func _on_death() -> void:
-	# Basic death behavior
-	if animation_player and animation_player.has_animation("death"):
-		animation_player.play("death")
-		await animation_player.animation_finished
-
+	fsm.transition_to("Death")
 	# Drop XP or items logic would go here
 	GameManager.add_xp(stats.xp_reward if stats else 0)
-	queue_free()
+	# Basic destruction logic is handled by DeathState or an animation callback
