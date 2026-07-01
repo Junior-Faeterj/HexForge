@@ -1,21 +1,22 @@
-extends Label
+extends Node2D
 class_name DamageText
 
 ## DamageText
-## Visual feedback for damage dealt.
+## Visual feedback for damage dealt in world space.
+
+@onready var label: Label = $Label
 
 func setup(amount: float, is_critical: bool) -> void:
-	text = str(floor(amount))
+	label.text = str(floor(amount))
 
 	if is_critical:
-		scale = Vector2(1.5, 1.5)
-		modulate = Color.YELLOW
-		text += "!"
+		label.scale = Vector2(1.5, 1.5)
+		label.modulate = Color.YELLOW
+		label.text += "!"
 	else:
-		modulate = Color.WHITE
+		label.modulate = Color.WHITE
 
 func _ready() -> void:
-	# Animation logic
 	var tween := create_tween().set_parallel(true)
 	tween.tween_property(self, "position:y", position.y - 40, 0.8).set_trans(Tween.TRANS_OUT)
 	tween.tween_property(self, "modulate:a", 0.0, 0.8).set_delay(0.2)

@@ -2,7 +2,7 @@ extends Node
 class_name HealthComponent
 
 ## HealthComponent
-## Generic component for managing health in entities.
+## Generic component for managing health in entities, including regeneration.
 
 signal health_changed(current: float, max: float)
 signal health_depleted
@@ -30,3 +30,7 @@ func take_damage(amount: float) -> void:
 func heal(amount: float) -> void:
 	current_health = clamp(current_health + amount, 0, max_health)
 	health_changed.emit(current_health, max_health)
+
+func regenerate(amount: float) -> void:
+	if current_health < max_health and current_health > 0:
+		heal(amount)

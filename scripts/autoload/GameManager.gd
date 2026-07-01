@@ -5,6 +5,7 @@ extends Node
 
 signal game_started
 signal game_over
+signal victory
 signal level_up(new_level: int)
 
 var player_level: int = 1
@@ -23,8 +24,17 @@ func start_new_game() -> void:
 
 func add_xp(amount: int) -> void:
 	player_xp += amount
-	# Logic for leveling up would go here
+	# Logic for leveling up is handled in PlayerLevel component,
+	# but we can track global state here too.
 	pass
+
+func trigger_game_over() -> void:
+	game_over.emit()
+	get_tree().paused = true
+
+func trigger_victory() -> void:
+	victory.emit()
+	get_tree().paused = true
 
 func toggle_pause() -> void:
 	is_paused = !is_paused

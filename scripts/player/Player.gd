@@ -7,7 +7,7 @@ class_name Player
 @onready var input: PlayerInput = $Components/Input
 @onready var movement: PlayerMovement = $Components/Movement
 @onready var animation: PlayerAnimation = $Components/Animation
-@onready var health: PlayerHealth = $Components/Health
+@onready var health: HealthComponent = $Components/Health
 @onready var mana: PlayerMana = $Components/Mana
 @onready var level: PlayerLevel = $Components/Level
 @onready var spells: SpellManager = $Components/Spells
@@ -17,7 +17,8 @@ class_name Player
 @export var stats: PlayerStats
 
 func _ready() -> void:
-	# Initialize components with stats if provided
+	add_to_group("player")
+
 	if stats:
 		health.max_health = stats.max_health
 		mana.max_mana = stats.max_mana
@@ -28,7 +29,6 @@ func _ready() -> void:
 	hurtbox.received_knockback.connect(_on_knockback)
 
 func _process(delta: float) -> void:
-	# Handle regeneration
 	if stats:
 		health.regenerate(stats.health_regen_rate * delta)
 		mana.regenerate(stats.mana_regen_rate * delta)
@@ -36,7 +36,6 @@ func _process(delta: float) -> void:
 func _on_hurt(data: AttackData) -> void:
 	health.take_damage(data.damage)
 	GameManager.spawn_damage_text(data.damage, global_position, data.is_critical)
-	# Trigger visual feedback
 	var tween = create_tween()
 	tween.tween_property($Sprite2D, "modulate", Color.RED, 0.1)
 	tween.tween_property($Sprite2D, "modulate", Color.WHITE, 0.1)
@@ -46,7 +45,7 @@ func _on_knockback(force: Vector2) -> void:
 
 func _on_death() -> void:
 	fsm.transition_to("Death")
+	GameManager.trigger_game_over()
 
-## Interface for receiving damage (Direct call)
 func take_damage(amount: float) -> void:
 	health.take_damage(amount)
