@@ -13,14 +13,13 @@ class_name HUD
 @onready var game_over_screen: Control = $Screens/GameOverScreen
 @onready var victory_screen: Control = $Screens/VictoryScreen
 @onready var pause_menu: Control = $Screens/PauseMenu
+@onready var inventory_ui: InventoryUI = $Screens/InventoryUI
 
 func _ready() -> void:
-	# Try to find player, otherwise wait
 	var player = get_tree().get_first_node_in_group("player")
 	if player:
 		_setup_player_connections(player)
 	else:
-		# Fallback: wait a frame or until player is added to tree
 		get_tree().node_added.connect(_on_node_added)
 
 	GameManager.game_over.connect(_on_game_over)
@@ -29,6 +28,7 @@ func _ready() -> void:
 	game_over_screen.hide()
 	victory_screen.hide()
 	pause_menu.hide()
+	inventory_ui.hide()
 
 func _on_node_added(node: Node) -> void:
 	if node is Player:
@@ -40,6 +40,11 @@ func _setup_player_connections(player: Player) -> void:
 	player.mana.mana_changed.connect(_on_mana_changed)
 	player.level.xp_changed.connect(_on_xp_changed)
 	player.level.level_up.connect(_on_level_up)
+
+	# Connect Inventory UI
+	inventory_ui.inventory_manager = player.inventory
+	inventory_ui._setup_grid()
+
 	# Initialize values
 	_on_health_changed(player.health.current_health, player.health.max_health)
 	_on_mana_changed(player.mana.current_mana, player.mana.max_mana)

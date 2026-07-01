@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://hud01"]
+[gd_scene load_steps=6 format=3 uid="uid://hud01"]
 
 [ext_resource type="Script" path="res://scripts/ui/HUD.gd" id="1_hud"]
 [ext_resource type="PackedScene" uid="uid://pausemenu01" path="res://scenes/ui/PauseMenu.tscn" id="2_pause"]
 [ext_resource type="PackedScene" uid="uid://gameover01" path="res://scenes/ui/GameOverScreen.tscn" id="3_go"]
 [ext_resource type="PackedScene" uid="uid://victory01" path="res://scenes/ui/VictoryScreen.tscn" id="4_vic"]
+[ext_resource type="PackedScene" uid="uid://invui01" path="res://scenes/ui/InventoryUI.tscn" id="5_inv"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -94,3 +95,16 @@ layout_mode = 1
 [node name="VictoryScreen" parent="Screens" instance=ExtResource("4_vic")]
 visible = false
 layout_mode = 1
+
+[node name="InventoryUI" parent="Screens" instance=ExtResource("5_inv")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0

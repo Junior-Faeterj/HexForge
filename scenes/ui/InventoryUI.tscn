@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://invui01"]
+
+[ext_resource type="Script" path="res://scripts/ui/InventoryUI.gd" id="1_inv"]
+
+[node name="InventoryUI" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_inv")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 0.8)
+
+[node name="Title" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 5.0
+offset_right = 50.0
+offset_bottom = 28.0
+grow_horizontal = 2
+text = "INVENTORY"
+horizontal_alignment = 1
+
+[node name="Grid" type="GridContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -60.0
+offset_right = 130.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 5

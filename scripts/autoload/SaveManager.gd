@@ -5,6 +5,12 @@ extends Node
 
 const SAVE_PATH: String = "user://hexforge_save.dat"
 
+# Database for loading items by ID
+var item_database: Dictionary[String, ItemResource] = {}
+
+func register_item(item: ItemResource) -> void:
+	item_database[item.id] = item
+
 func save_game(data: Dictionary[String, Variant]) -> void:
 	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file:
@@ -26,7 +32,6 @@ func load_game() -> Dictionary[String, Variant]:
 	if parse_result == OK:
 		var result: Variant = json.get_data()
 		if result is Dictionary:
-			# Cast to typed dictionary
 			var typed_result: Dictionary[String, Variant] = {}
 			for key: Variant in result.keys():
 				typed_result[str(key)] = result[key]

@@ -11,6 +11,7 @@ class_name Player
 @onready var mana: PlayerMana = $Components/Mana
 @onready var level: PlayerLevel = $Components/Level
 @onready var spells: SpellManager = $Components/Spells
+@onready var inventory: InventoryManager = $Components/Inventory
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var fsm: PlayerFSM = $FSM
 
@@ -49,3 +50,13 @@ func _on_death() -> void:
 
 func take_damage(amount: float) -> void:
 	health.take_damage(amount)
+
+func save() -> Dictionary[String, Variant]:
+	return {
+		"level": level.current_level,
+		"xp": level.current_xp,
+		"health": health.current_health,
+		"mana": mana.current_mana,
+		"position": [global_position.x, global_position.y],
+		"inventory": inventory.get_save_data()
+	}
