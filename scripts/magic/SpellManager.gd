@@ -59,8 +59,21 @@ func _execute_cast(spell_res: MagicResource, direction: Vector2) -> void:
 
 	get_tree().root.add_child(spell_instance)
 
-	# init handles looking at direction
 	spell_instance.init(player, direction)
 
 	if spell_res.cast_sfx:
 		AudioManager.play_sfx(spell_res.cast_sfx, player.global_position)
+
+func get_unlocked_magic_names() -> Array[String]:
+	var names: Array[String] = []
+	for spell in spells:
+		names.append(spell.name)
+	return names
+
+func load_magic_data(names: Array, database: Dictionary) -> void:
+	spells.clear()
+	for n in names:
+		var res = database.get(n)
+		if res:
+			spells.append(res)
+			_spell_cache[res.name] = res
