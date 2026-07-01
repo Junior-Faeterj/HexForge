@@ -1,8 +1,7 @@
 extends Node
 
 ## GameManager
-## Responsibility: Manage global game state, progression, and high-level logic.
-## Following Singleton and Observer patterns.
+## Responsibility: Manage global game state with Godot 4.7 static typing.
 
 signal game_started
 signal game_over
@@ -23,7 +22,6 @@ func start_new_game() -> void:
 func add_xp(amount: int) -> void:
 	player_xp += amount
 	# Logic for leveling up would go here
-	# if player_xp >= xp_threshold: level_up.emit(player_level)
 	pass
 
 func toggle_pause() -> void:

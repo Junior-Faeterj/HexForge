@@ -1,8 +1,7 @@
 extends State
 
-func enter(_msg := {}) -> void:
+func enter(_msg: Dictionary[String, Variant] = {}) -> void:
 	owner.animation.play_death()
-	# Disable collisions or other logic
 	owner.set_physics_process(false)
 
 func physics_update(_delta: float) -> void:

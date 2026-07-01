@@ -1,5 +1,8 @@
 extends State
 
+func enter(_msg: Dictionary[String, Variant] = {}) -> void:
+	pass
+
 func update(_delta: float) -> void:
 	if owner.input.is_moving():
 		state_machine.transition_to("Move")

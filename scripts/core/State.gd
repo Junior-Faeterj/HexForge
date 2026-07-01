@@ -4,9 +4,9 @@ class_name State
 ## State
 ## Base class for Finite State Machine states.
 
-var state_machine = null
+var state_machine: StateMachine = null
 
-func enter(_msg := {}) -> void:
+func enter(_msg: Dictionary[String, Variant] = {}) -> void:
 	pass
 
 func exit() -> void:
