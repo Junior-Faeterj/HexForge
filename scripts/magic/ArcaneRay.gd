@@ -15,6 +15,14 @@ func _ready() -> void:
 	var end_point := ray.target_position
 	if ray.is_colliding():
 		end_point = to_local(ray.get_collision_point())
-		_on_hit(ray.get_collider())
+		var collider = ray.get_collider()
+		# If the collider has a Hurtbox child
+		var hurtbox = collider.get_node_or_null("Hurtbox")
+		if hurtbox is Hurtbox:
+			var data = AttackData.new()
+			data.damage = resource.damage
+			data.attacker = caster
+			data.attack_position = global_position
+			hurtbox.take_attack(data)
 
 	line.points = [Vector2.ZERO, end_point]

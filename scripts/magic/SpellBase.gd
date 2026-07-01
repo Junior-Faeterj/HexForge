@@ -2,19 +2,19 @@ extends Node2D
 class_name SpellBase
 
 ## SpellBase
-## Base class for all instantiated magic effects (projectiles, AOEs, etc.).
+## Base class for all instantiated magic effects.
 
 @export var resource: MagicResource
+@onready var hitbox: Hitbox = get_node_or_null("Hitbox")
 
 var caster: Node2D
 var direction: Vector2 = Vector2.RIGHT
-var damage: float = 0.0
 
 func _ready() -> void:
-	if resource:
-		damage = resource.damage
+	if hitbox and resource:
+		hitbox.attack_data.damage = resource.damage
+		hitbox.attack_data.attacker = caster
 
-	# Auto-destroy after range/lifetime
 	var timer := get_tree().create_timer(5.0)
 	timer.timeout.connect(queue_free)
 
@@ -23,10 +23,7 @@ func init(init_caster: Node2D, init_direction: Vector2) -> void:
 	direction = init_direction
 	look_at(global_position + direction)
 
-func _on_hit(body: Node) -> void:
-	# Combat logic will be expanded in the Combat System module
-	if body.has_method("take_damage"):
-		body.take_damage(damage)
-
-	# Standard behavior: destroy on impact unless pierced
+## Common behavior for spells when they "hit" something.
+func _on_impact() -> void:
+	# Standard behavior: destroy on impact. Can be overridden.
 	queue_free()

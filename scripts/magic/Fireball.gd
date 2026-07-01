@@ -5,5 +5,7 @@ extends SpellBase
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
 
-func _on_body_entered(body: Node) -> void:
-	_on_hit(body)
+func _on_body_entered(_body: Node) -> void:
+	# Damage is handled by the Hitbox component.
+	# We just handle projectile impact logic here.
+	_on_impact()

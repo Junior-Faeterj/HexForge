@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://fireball01"]
+[gd_scene load_steps=6 format=3 uid="uid://fireball01"]
 
 [ext_resource type="Script" path="res://scripts/magic/Fireball.gd" id="1_fireball"]
+[ext_resource type="Script" path="res://scripts/combat/Hitbox.gd" id="2_hitbox"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1"]
 radius = 6.0
@@ -30,5 +31,13 @@ initial_velocity_max = 100.0
 scale_amount_min = 2.0
 scale_amount_max = 4.0
 color_ramp = SubResource("Gradient_1")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("2_hitbox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
