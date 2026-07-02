@@ -17,6 +17,7 @@ class_name Player
 @onready var fsm: PlayerFSM = $FSM
 
 @export var stats: PlayerStats
+@export var level_up_vfx: PackedScene
 
 func _ready() -> void:
 	add_to_group("player")
@@ -30,22 +31,19 @@ func _ready() -> void:
 	hurtbox.received_damage.connect(_on_hurt)
 	hurtbox.received_knockback.connect(_on_knockback)
 	input.interact_requested.connect(_on_interact)
+	level.level_up.connect(_on_level_up)
 
 func _process(delta: float) -> void:
 	if stats:
 		health.regenerate(stats.health_regen_rate * delta)
 		mana.regenerate(stats.mana_regen_rate * delta)
 
-	# Update interaction ray direction
 	if input.direction != Vector2.ZERO:
 		interact_ray.target_position = input.direction * 30.0
 
 func _on_hurt(data: AttackData) -> void:
 	health.take_damage(data.damage)
 	GameManager.spawn_damage_text(data.damage, global_position, data.is_critical)
-	var tween = create_tween()
-	tween.tween_property($Sprite2D, "modulate", Color.RED, 0.1)
-	tween.tween_property($Sprite2D, "modulate", Color.WHITE, 0.1)
 
 func _on_knockback(force: Vector2) -> void:
 	movement.apply_knockback(force)
@@ -55,6 +53,12 @@ func _on_interact() -> void:
 		var collider = interact_ray.get_collider()
 		if collider.has_method("interact"):
 			collider.interact()
+
+func _on_level_up(_new_level: int) -> void:
+	if level_up_vfx:
+		var vfx = level_up_vfx.instantiate()
+		add_child(vfx)
+		vfx.position = Vector2.ZERO
 
 func _on_death() -> void:
 	fsm.transition_to("Death")

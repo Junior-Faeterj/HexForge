@@ -28,7 +28,6 @@ Add these in **Project Settings > Autoload**.
 | | `Components/Spells` | `res://scripts/magic/SpellManager.gd` |
 | | `Components/Inventory` | `res://scripts/inventory/InventoryManager.gd` |
 | | `Hurtbox` | `res://scripts/combat/Hurtbox.gd` |
-| | `InteractionRay` | (RayCast2D - no script) |
 | | `FSM` | `res://scripts/player/PlayerFSM.gd` |
 | | `FSM/Idle` | `res://scripts/player/states/IdleState.gd` |
 | | `FSM/Move` | `res://scripts/player/states/MoveState.gd` |
@@ -36,13 +35,17 @@ Add these in **Project Settings > Autoload**.
 
 ---
 
-## 3. Magic Spells
+## 3. Magic Spells & VFX
 | Scene | Node Name | Script |
 | :--- | :--- | :--- |
 | `Fireball.tscn` | **Fireball** | `res://scripts/magic/Fireball.gd` |
 | `ArcaneRay.tscn` | **ArcaneRay** | `res://scripts/magic/ArcaneRay.gd` |
 | `MysticExplosion.tscn` | **MysticExplosion** | `res://scripts/magic/MysticExplosion.gd` |
 | `ArcaneShield.tscn` | **ArcaneShield** | `res://scripts/magic/ArcaneShield.gd` |
+| `ImpactVFX.tscn` | **Raiz** | `res://scripts/utils/AutoVFX.gd` |
+| `ExplosionVFX.tscn` | **Raiz** | `res://scripts/utils/AutoVFX.gd` |
+| `LevelUpVFX.tscn` | **Raiz** | `res://scripts/utils/AutoVFX.gd` |
+| `BossAuraVFX.tscn` | **Raiz** | `res://scripts/utils/AutoVFX.gd` |
 | *(All Spell Scenes)* | `Hitbox` | `res://scripts/combat/Hitbox.gd` |
 
 ---
@@ -56,12 +59,9 @@ Add these in **Project Settings > Autoload**.
 | | `DetectionArea` | `res://scripts/enemy/DetectionComponent.gd` |
 | | `Hurtbox` | `res://scripts/combat/Hurtbox.gd` |
 | | `FSM` | `res://scripts/enemy/EnemyFSM.gd` |
-| | `FSM/Idle` | `res://scripts/enemy/states/IdleState.gd` |
 | | `FSM/Patrol` | `res://scripts/enemy/states/PatrolState.gd` |
 | | `FSM/Death` | `res://scripts/enemy/states/DeathState.gd` |
-| `Boss.tscn` | `FSM/Phase1` | `res://scripts/enemy/boss_states/BossPhase1State.gd` |
-| | `FSM/Phase2` | `res://scripts/enemy/boss_states/BossPhase2State.gd` |
-| | `FSM/Teleport` | `res://scripts/enemy/boss_states/BossTeleportState.gd` |
+| `Boss.tscn` | `FSM/Phase1` | `res://scripts/enemy/boss_states/BossPhase1State.gd" |
 
 ---
 
@@ -69,26 +69,15 @@ Add these in **Project Settings > Autoload**.
 | Scene | Node Name | Script |
 | :--- | :--- | :--- |
 | `HUD.tscn` | **HUD** | `res://scripts/ui/HUD.gd` |
-| `PauseMenu.tscn` | **PauseMenu** | `res://scripts/ui/PauseMenu.gd` |
-| `InventoryUI.tscn` | **InventoryUI** | `res://scripts/ui/InventoryUI.gd` |
-| `InventorySlot.tscn` | **InventorySlot** | `res://scripts/ui/InventorySlot.gd` |
-| `MainMenu.tscn" | **MainMenu** | `res://scripts/menus/MainMenu.gd` |
-| `SettingsMenu.tscn` | **SettingsMenu** | `res://scripts/menus/SettingsMenu.gd` |
-| `LoadingScreen.tscn` | **LoadingScreen** | `res://scripts/menus/LoadingScreen.gd` |
-| `DamageText.tscn` | **DamageText** | `res://scripts/ui/DamageText.gd` |
+| `PauseMenu.tscn` | **PauseMenu** | `res://scripts/ui/PauseMenu.gd" |
+| `InventoryUI.tscn` | **InventoryUI** | `res://scripts/ui/InventoryUI.gd" |
+| `MainMenu.tscn" | **MainMenu** | `res://scripts/menus/MainMenu.gd" |
+| `LoadingScreen.tscn` | **LoadingScreen** | `res://scripts/menus/LoadingScreen.gd" |
+| `DamageText.tscn` | **DamageText** | `res://scripts/ui/DamageText.gd" |
 
 ---
 
-## 6. World Objects
-| Scene | Node Name | Script |
-| :--- | :--- | :--- |
-| `Checkpoint.tscn` | **Checkpoint** | `res://scripts/world/Checkpoint.gd` |
-| `Portal.tscn" | **Portal** | `res://scripts/world/Portal.gd` |
-| `NPC.tscn" | **NPC** | `res://scripts/world/NPC.gd" |
-
----
-
-## 7. Resources (.tres)
+## 6. Resources (.tres)
 Scripts used to define data structures.
 
 | Script Path | Usage |

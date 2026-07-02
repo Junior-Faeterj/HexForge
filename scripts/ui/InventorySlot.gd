@@ -38,6 +38,7 @@ func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	return data is Dictionary and data.has("slot_index")
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	var inventory_ui := get_parent_control() as InventoryUI
+	# Use find_parent to safely reach the InventoryUI regardless of GridContainer depth
+	var inventory_ui = find_parent("InventoryUI") as InventoryUI
 	if inventory_ui:
 		inventory_ui.request_swap(data.slot_index, slot_index)
