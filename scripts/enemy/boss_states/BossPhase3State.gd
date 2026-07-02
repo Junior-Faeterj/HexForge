@@ -2,7 +2,7 @@ extends State
 
 var _summon_timer: float = 0.0
 
-func enter(_msg: Dictionary[String, Variant] = {}) -> void:
+func enter(_msg: Dictionary = {}) -> void:
 	_summon_timer = owner.boss_stats.summon_cooldown
 
 func update(delta: float) -> void:

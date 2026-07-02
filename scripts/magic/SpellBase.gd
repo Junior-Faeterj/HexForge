@@ -4,8 +4,8 @@ class_name SpellBase
 ## SpellBase
 ## Base class for all instantiated magic effects.
 
-@export var resource: MagicResource
-@onready var hitbox: Hitbox = get_node_or_null("Hitbox")
+@export var resource: Resource # Use base Resource to avoid circularity with MagicResource
+@onready var hitbox: Node = get_node_or_null("Hitbox") # Use Node to avoid circularity
 
 var caster: Node2D
 var direction: Vector2 = Vector2.RIGHT
@@ -25,5 +25,4 @@ func init(init_caster: Node2D, init_direction: Vector2) -> void:
 
 ## Common behavior for spells when they "hit" something.
 func _on_impact() -> void:
-	# Standard behavior: destroy on impact. Can be overridden.
 	queue_free()

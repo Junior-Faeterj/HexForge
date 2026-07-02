@@ -1,6 +1,6 @@
 extends State
 
-func enter(_msg: Dictionary[String, Variant] = {}) -> void:
+func enter(_msg: Dictionary = {}) -> void:
 	# owner.animation_player.play("attack")
 	# Perform damage logic (Hitbox)
 	await get_tree().create_timer(1.0).timeout

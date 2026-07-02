@@ -10,9 +10,9 @@ signal game_saved
 signal game_loaded
 
 # Database for loading items by ID (should be populated by GameManager/Resources)
-var item_database: Dictionary[String, ItemResource] = {}
+var item_database: Dictionary = {}
 # Database for loading magic by name
-var magic_database: Dictionary[String, MagicResource] = {}
+var magic_database: Dictionary = {}
 
 var autosave_timer: Timer
 
@@ -34,7 +34,7 @@ func save_game() -> void:
 	var player: Player = get_tree().get_first_node_in_group("player") as Player
 	if not player: return
 
-	var data: Dictionary[String, Variant] = {
+	var data: Dictionary = {
 		"player": {
 			"position": {"x": player.global_position.x, "y": player.global_position.y},
 			"stats": {
@@ -83,21 +83,21 @@ func autosave_game() -> void:
 	save_game()
 
 ## CONFIGURATION (SETTINGS)
-func save_config(config_data: Dictionary[String, Variant]) -> void:
+func save_config(config_data: Dictionary) -> void:
 	_write_json(CONFIG_PATH, config_data)
 
-func load_config() -> Dictionary[String, Variant]:
+func load_config() -> Dictionary:
 	return _read_json(CONFIG_PATH)
 
 ## INTERNAL JSON UTILS
-func _write_json(path: String, data: Dictionary[String, Variant]) -> void:
+func _write_json(path: String, data: Dictionary) -> void:
 	var file := FileAccess.open(path, FileAccess.WRITE)
 	if file:
 		var json_string := JSON.stringify(data, "\t")
 		file.store_line(json_string)
 		file.close()
 
-func _read_json(path: String) -> Dictionary[String, Variant]:
+func _read_json(path: String) -> Dictionary:
 	if not FileAccess.file_exists(path):
 		return {}
 
@@ -110,7 +110,7 @@ func _read_json(path: String) -> Dictionary[String, Variant]:
 	if parse_result == OK:
 		var result: Variant = json.get_data()
 		if result is Dictionary:
-			var typed_result: Dictionary[String, Variant] = {}
+			var typed_result: Dictionary = {}
 			for key: Variant in result.keys():
 				typed_result[str(key)] = result[key]
 			return typed_result

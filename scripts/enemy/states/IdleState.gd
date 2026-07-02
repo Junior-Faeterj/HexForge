@@ -3,7 +3,7 @@ extends State
 @export var idle_time: float = 2.0
 var _timer: float = 0.0
 
-func enter(_msg: Dictionary[String, Variant] = {}) -> void:
+func enter(_msg: Dictionary = {}) -> void:
 	_timer = idle_time
 	# owner.animation_player.play("idle")
 

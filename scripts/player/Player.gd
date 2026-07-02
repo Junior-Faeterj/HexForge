@@ -63,7 +63,7 @@ func _on_death() -> void:
 func take_damage(amount: float) -> void:
 	health.take_damage(amount)
 
-func save() -> Dictionary[String, Variant]:
+func save() -> Dictionary:
 	return {
 		"level": level.current_level,
 		"xp": level.current_xp,

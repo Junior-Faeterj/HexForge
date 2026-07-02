@@ -7,11 +7,11 @@ class_name SpellManager
 signal spell_cast(spell_resource: MagicResource)
 signal cooldown_updated(spell_resource: MagicResource, remaining: float)
 
-@export var spells: Array[MagicResource] = []
+@export var spells: Array = []
 @onready var player: Player = owner
 
-var cooldowns: Dictionary[String, float] = {}
-var _spell_cache: Dictionary[String, MagicResource] = {}
+var cooldowns: Dictionary = {}
+var _spell_cache: Dictionary = {}
 
 func _ready() -> void:
 	for spell in spells:
@@ -64,8 +64,8 @@ func _execute_cast(spell_res: MagicResource, direction: Vector2) -> void:
 	if spell_res.cast_sfx:
 		AudioManager.play_sfx(spell_res.cast_sfx, player.global_position)
 
-func get_unlocked_magic_names() -> Array[String]:
-	var names: Array[String] = []
+func get_unlocked_magic_names() -> Array:
+	var names: Array = []
 	for spell in spells:
 		names.append(spell.name)
 	return names

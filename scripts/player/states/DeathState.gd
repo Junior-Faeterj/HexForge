@@ -1,6 +1,6 @@
 extends State
 
-func enter(_msg: Dictionary[String, Variant] = {}) -> void:
+func enter(_msg: Dictionary = {}) -> void:
 	owner.animation.play_death()
 	owner.set_physics_process(false)
 

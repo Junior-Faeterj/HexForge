@@ -1,6 +1,6 @@
 extends State
 
-func enter(_msg: Dictionary[String, Variant] = {}) -> void:
+func enter(_msg: Dictionary = {}) -> void:
 	pass
 
 func update(_delta: float) -> void:

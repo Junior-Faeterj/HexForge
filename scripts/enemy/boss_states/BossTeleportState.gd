@@ -1,6 +1,6 @@
 extends State
 
-func enter(_msg: Dictionary[String, Variant] = {}) -> void:
+func enter(_msg: Dictionary = {}) -> void:
 	# Random teleport within a range
 	var target = owner.detection_area.current_target
 	var random_offset := Vector2(randf_range(-200, 200), randf_range(-200, 200))
