@@ -28,6 +28,7 @@ Add these in **Project Settings > Autoload**.
 | | `Components/Spells` | `res://scripts/magic/SpellManager.gd` |
 | | `Components/Inventory` | `res://scripts/inventory/InventoryManager.gd` |
 | | `Hurtbox` | `res://scripts/combat/Hurtbox.gd` |
+| | `InteractionRay` | (RayCast2D - no script) |
 | | `FSM` | `res://scripts/player/PlayerFSM.gd` |
 | | `FSM/Idle` | `res://scripts/player/states/IdleState.gd` |
 | | `FSM/Move` | `res://scripts/player/states/MoveState.gd` |
@@ -57,16 +58,10 @@ Add these in **Project Settings > Autoload**.
 | | `FSM` | `res://scripts/enemy/EnemyFSM.gd` |
 | | `FSM/Idle` | `res://scripts/enemy/states/IdleState.gd` |
 | | `FSM/Patrol` | `res://scripts/enemy/states/PatrolState.gd` |
-| | `FSM/Detect` | `res://scripts/enemy/states/DetectState.gd` |
-| | `FSM/Follow` | `res://scripts/enemy/states/FollowState.gd` |
-| | `FSM/Attack` | `res://scripts/enemy/states/AttackState.gd` |
-| | `FSM/TakeDamage` | `res://scripts/enemy/states/TakeDamageState.gd` |
 | | `FSM/Death` | `res://scripts/enemy/states/DeathState.gd` |
 | `Boss.tscn` | `FSM/Phase1` | `res://scripts/enemy/boss_states/BossPhase1State.gd` |
 | | `FSM/Phase2` | `res://scripts/enemy/boss_states/BossPhase2State.gd` |
-| | `FSM/Phase3` | `res://scripts/enemy/boss_states/BossPhase3State.gd` |
 | | `FSM/Teleport` | `res://scripts/enemy/boss_states/BossTeleportState.gd` |
-| | `FSM/Summon` | `res://scripts/enemy/boss_states/BossSummonState.gd` |
 
 ---
 
@@ -77,11 +72,9 @@ Add these in **Project Settings > Autoload**.
 | `PauseMenu.tscn` | **PauseMenu** | `res://scripts/ui/PauseMenu.gd` |
 | `InventoryUI.tscn` | **InventoryUI** | `res://scripts/ui/InventoryUI.gd` |
 | `InventorySlot.tscn` | **InventorySlot** | `res://scripts/ui/InventorySlot.gd` |
-| `MainMenu.tscn` | **MainMenu** | `res://scripts/menus/MainMenu.gd` |
+| `MainMenu.tscn" | **MainMenu** | `res://scripts/menus/MainMenu.gd` |
 | `SettingsMenu.tscn` | **SettingsMenu** | `res://scripts/menus/SettingsMenu.gd` |
 | `LoadingScreen.tscn` | **LoadingScreen** | `res://scripts/menus/LoadingScreen.gd` |
-| `GameOverScreen.tscn` | **GameOverScreen** | `res://scripts/ui/GameOverScreen.gd` |
-| `VictoryScreen.tscn` | **VictoryScreen** | `res://scripts/ui/VictoryScreen.gd` |
 | `DamageText.tscn` | **DamageText** | `res://scripts/ui/DamageText.gd` |
 
 ---
@@ -90,21 +83,18 @@ Add these in **Project Settings > Autoload**.
 | Scene | Node Name | Script |
 | :--- | :--- | :--- |
 | `Checkpoint.tscn` | **Checkpoint** | `res://scripts/world/Checkpoint.gd` |
-| `Portal.tscn` | **Portal** | `res://scripts/world/Portal.gd` |
-| `NPC.tscn` | **NPC** | `res://scripts/world/NPC.gd` |
+| `Portal.tscn" | **Portal** | `res://scripts/world/Portal.gd` |
+| `NPC.tscn" | **NPC** | `res://scripts/world/NPC.gd" |
 
 ---
 
 ## 7. Resources (.tres)
-These are not attached to nodes but require the script to be assigned as their **Script** property in the Inspector.
+Scripts used to define data structures.
 
-| Script Path | Resource Type |
+| Script Path | Usage |
 | :--- | :--- |
-| `res://scripts/player/PlayerStats.gd` | Stats Resource for Player |
-| `res://resources/magic/MagicResource.gd` | Definition for each Spell |
-| `res://scripts/enemy/EnemyStats.gd` | Stats Resource for Enemies |
-| `res://scripts/enemy/BossStats.gd` | Stats Resource for Bosses |
-| `res://resources/items/ItemResource.gd` | Base for Inventory Items |
-| `res://resources/items/PotionResource.gd` | Specific for Potions |
-| `res://resources/items/ScrollResource.gd` | Specific for Scrolls |
-| `res://resources/items/EquipmentResource.gd` | Specific for Equipment |
+| `res://scripts/player/PlayerStats.gd` | For `PlayerStats.tres` |
+| `res://resources/magic/MagicResource.gd` | For individual spells. |
+| `res://scripts/enemy/EnemyStats.gd` | For individual enemies. |
+| `res://scripts/enemy/BossStats.gd` | For the Boss data. |
+| `res://resources/items/ItemResource.gd` | Base for items. |
