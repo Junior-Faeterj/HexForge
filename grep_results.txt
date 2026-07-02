@@ -1,0 +1,3 @@
+./scripts/ui/DamageText.gd:	tween.tween_property(self, "position:y", position.y - 40, 0.8).set_trans(Tween.TRANS_QUAD)
+grep: ./grep_results.txt: input file is also the output
+grep: ./grep_results.txt: input file is also the output
