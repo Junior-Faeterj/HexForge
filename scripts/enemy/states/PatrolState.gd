@@ -9,7 +9,7 @@ func enter(_msg: Dictionary = {}) -> void:
 func physics_update(_delta: float) -> void:
 	var dir := (_target_pos - owner.global_position).normalized()
 	owner.velocity = dir * owner.stats.movement_speed * 0.5
-	owner.move_and_slide()
+	owner.velocity = owner.velocity; owner.move_and_slide()
 
 	if owner.global_position.distance_to(_target_pos) < 10.0:
 		state_machine.transition_to("Idle")

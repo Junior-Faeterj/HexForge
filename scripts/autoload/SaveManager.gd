@@ -62,11 +62,11 @@ func load_game() -> void:
 	if not player: return
 
 	# Apply player data
-	var p_data: Dictionary = data.get("player", {})
-	var pos_data: Dictionary = p_data.get("position", {})
+	var p_data: Dictionary = data.get("player", {}) as Dictionary
+	var pos_data: Dictionary = p_data.get("position", {}) as Dictionary
 	player.global_position = Vector2(pos_data.get("x", 0), pos_data.get("y", 0))
 
-	var s_data: Dictionary = p_data.get("stats", {})
+	var s_data: Dictionary = p_data.get("stats", {}) as Dictionary
 	player.health.current_health = s_data.get("health", 100.0)
 	player.mana.current_mana = s_data.get("mana", 50.0)
 	player.level.current_level = s_data.get("level", 1)

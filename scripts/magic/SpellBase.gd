@@ -26,7 +26,7 @@ func init(init_caster: Node2D, init_direction: Vector2) -> void:
 
 func _on_impact() -> void:
 	if impact_vfx:
-		var vfx = impact_vfx.instantiate()
+		var vfx = impact_vfx.instantiate() as Node
 		get_tree().root.add_child(vfx)
 		vfx.global_position = global_position
 	queue_free()

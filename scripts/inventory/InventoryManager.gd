@@ -7,7 +7,7 @@ class_name InventoryManager
 signal inventory_updated
 
 @export var slot_count: int = 20
-var slots: Array = []
+var slots: Array[Dictionary] = []
 
 func _ready() -> void:
 	_initialize_slots()

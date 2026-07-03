@@ -1,9 +1,9 @@
 extends State
 
 func enter(_msg: Dictionary = {}) -> void:
-	# Random teleport within a range
+	# Random teleport within a spell_range
 	var target = owner.detection_area.current_target
-	var random_offset := Vector2(randf_range(-200, 200), randf_range(-200, 200))
+	var random_offset = Vector2(randf_range(-200, 200), randf_range(-200, 200))
 
 	if target:
 		owner.global_position = target.global_position + random_offset

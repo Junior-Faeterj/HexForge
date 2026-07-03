@@ -7,7 +7,7 @@ class_name SpellManager
 signal spell_cast(spell_resource: MagicResource)
 signal cooldown_updated(spell_resource: MagicResource, remaining: float)
 
-@export var spells: Array = []
+@export var spells: Array[MagicResource] = []
 @onready var player: Player = owner
 
 var cooldowns: Dictionary = {}
@@ -29,7 +29,7 @@ func cast_spell(index: int, direction: Vector2) -> void:
 	if index < 0 or index >= spells.size():
 		return
 
-	var spell_res := spells[index]
+	var spell_res : MagicResource = spells[index]
 
 	if is_on_cooldown(spell_res.name):
 		return

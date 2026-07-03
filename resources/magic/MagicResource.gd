@@ -9,7 +9,7 @@ class_name MagicResource
 @export var mana_cost: float = 10.0
 @export var cooldown: float = 1.0
 @export var damage: float = 5.0
-@export var range: float = 200.0
+@export var spell_range: float = 200.0
 
 @export var icon: Texture2D
 @export var projectile_scene: PackedScene # The scene to instantiate

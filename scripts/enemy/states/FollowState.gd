@@ -7,13 +7,13 @@ func physics_update(_delta: float) -> void:
 		return
 
 	var dist := owner.global_position.distance_to(target.global_position)
-	if dist < 40.0: # Attack range
+	if dist < 40.0: # Attack spell_range
 		state_machine.transition_to("Attack")
 		return
 
 	var dir := (target.global_position - owner.global_position).normalized()
 	owner.velocity = dir * owner.stats.movement_speed
-	owner.move_and_slide()
+	owner.velocity = owner.velocity; owner.move_and_slide()
 
 	if dist > owner.stats.detection_range * 1.2:
 		state_machine.transition_to("Idle")

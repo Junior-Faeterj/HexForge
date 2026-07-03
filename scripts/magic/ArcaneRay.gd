@@ -9,7 +9,7 @@ func _ready() -> void:
 	timer.timeout.connect(queue_free)
 
 	if resource:
-		ray.target_position = direction * resource.range
+		ray.target_position = direction * resource.spell_range
 		ray.force_raycast_update()
 
 		var end_point := ray.target_position

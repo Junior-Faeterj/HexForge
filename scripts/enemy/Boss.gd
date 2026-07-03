@@ -33,7 +33,7 @@ func _change_phase(new_phase: int) -> void:
 	phase_changed.emit(current_phase)
 
 	if phase_change_vfx:
-		var vfx = phase_change_vfx.instantiate()
+		var vfx = phase_change_vfx.instantiate() as Node
 		add_child(vfx)
 		vfx.position = Vector2.ZERO
 
