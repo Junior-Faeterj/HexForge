@@ -16,7 +16,7 @@ func _ready() -> void:
 		hitbox.attack_data.damage = resource.damage
 		hitbox.attack_data.attacker = caster
 
-	var timer := get_tree().create_timer(5.0)
+	var timer: SceneTreeTimer = get_tree().create_timer(5.0)
 	timer.timeout.connect(queue_free)
 
 func init(init_caster: Node2D, init_direction: Vector2) -> void:
@@ -26,7 +26,7 @@ func init(init_caster: Node2D, init_direction: Vector2) -> void:
 
 func _on_impact() -> void:
 	if impact_vfx:
-		var vfx = impact_vfx.instantiate() as Node
+		var vfx: Node = impact_vfx.instantiate() as Node
 		get_tree().root.add_child(vfx)
 		vfx.global_position = global_position
 	queue_free()

@@ -26,7 +26,7 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 	if item == null:
 		return null
 
-	var drag_preview := TextureRect.new()
+	var drag_preview: TextureRect = TextureRect.new()
 	drag_preview.texture = item.icon
 	drag_preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	drag_preview.custom_minimum_size = Vector2(40, 40)
@@ -39,6 +39,6 @@ func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	# Use find_parent to safely reach the InventoryUI regardless of GridContainer depth
-	var inventory_ui = find_parent("InventoryUI") as InventoryUI
+	var inventory_ui: InventoryUI = find_parent("InventoryUI") as InventoryUI
 	if inventory_ui:
 		inventory_ui.request_swap(data.slot_index, slot_index)

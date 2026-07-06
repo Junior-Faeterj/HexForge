@@ -10,5 +10,5 @@ description = "Protect the caster from incoming attacks."
 mana_cost = 25.0
 cooldown = 10.0
 damage = 0.0
-range = 0.0
+spell_range = 0.0
 projectile_scene = ExtResource("1_scene")

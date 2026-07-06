@@ -24,7 +24,7 @@ func take_attack(data: AttackData) -> bool:
 	received_damage.emit(data)
 
 	# Calculate knockback direction
-	var kb_dir := (global_position - data.attack_position).normalized()
+	var kb_dir: Vector2 = (global_position - data.attack_position).normalized()
 	received_knockback.emit(kb_dir * data.knockback_force)
 
 	# Start I-frames

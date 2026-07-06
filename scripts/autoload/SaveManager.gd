@@ -55,7 +55,7 @@ func save_game() -> void:
 
 ## LOAD AND APPLY GAME DATA
 func load_game() -> void:
-	var data := _read_json(SAVE_PATH)
+	var data: Dictionary = _read_json(SAVE_PATH)
 	if data.is_empty(): return
 
 	var player: Player = get_tree().get_first_node_in_group("player") as Player
@@ -91,9 +91,9 @@ func load_config() -> Dictionary:
 
 ## INTERNAL JSON UTILS
 func _write_json(path: String, data: Dictionary) -> void:
-	var file := FileAccess.open(path, FileAccess.WRITE)
+	var file: FileAccess = FileAccess.open(path, FileAccess.WRITE)
 	if file:
-		var json_string := JSON.stringify(data, "\t")
+		var json_string: String = JSON.stringify(data, "\t")
 		file.store_line(json_string)
 		file.close()
 
@@ -101,12 +101,12 @@ func _read_json(path: String) -> Dictionary:
 	if not FileAccess.file_exists(path):
 		return {}
 
-	var file := FileAccess.open(path, FileAccess.READ)
-	var json_string := file.get_as_text()
+	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
+	var json_string: String = file.get_as_text()
 	file.close()
 
-	var json := JSON.new()
-	var parse_result := json.parse(json_string)
+	var json: JSON = JSON.new()
+	var parse_result: Error = json.parse(json_string)
 	if parse_result == OK:
 		var result: Variant = json.get_data()
 		if result is Dictionary:

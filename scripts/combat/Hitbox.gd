@@ -15,12 +15,12 @@ func _ready() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Hurtbox:
-		var final_attack_data := _prepare_attack_data()
-		if area.take_attack(final_attack_data):
+		var final_attack_data: AttackData = _prepare_attack_data()
+		if (area as Hurtbox).take_attack(final_attack_data):
 			hit_confirmed.emit(area)
 
 func _prepare_attack_data() -> AttackData:
-	var data := AttackData.new()
+	var data: AttackData = AttackData.new()
 	data.damage = attack_data.damage
 	data.knockback_force = attack_data.knockback_force
 	data.attacker = owner as Node2D

@@ -27,13 +27,13 @@ func _register_resources() -> void:
 	_register_from_folder(items_dir, SaveManager.register_item)
 
 func _register_from_folder(path: String, register_func: Callable) -> void:
-	var dir = DirAccess.open(path)
+	var dir: DirAccess = DirAccess.open(path)
 	if dir:
 		dir.list_dir_begin()
-		var file_name = dir.get_next()
+		var file_name: String = dir.get_next()
 		while file_name != "":
 			if not dir.current_is_dir() and file_name.ends_with(".tres"):
-				var res = load(path + file_name)
+				var res: Resource = load(path + file_name)
 				register_func.call(res)
 			file_name = dir.get_next()
 
@@ -41,7 +41,7 @@ func start_new_game() -> void:
 	game_started.emit()
 
 func add_xp(amount: int) -> void:
-	var player = get_tree().get_first_node_in_group("player") as Player
+	var player: Player = get_tree().get_first_node_in_group("player") as Player
 	if player:
 		player.level.add_xp(amount)
 
@@ -58,7 +58,7 @@ func toggle_pause() -> void:
 	get_tree().paused = is_paused
 
 func spawn_damage_text(amount: float, position: Vector2, is_critical: bool = false) -> void:
-	var text_instance := DAMAGE_TEXT_SCENE.instantiate() as DamageText
+	var text_instance: DamageText = DAMAGE_TEXT_SCENE.instantiate() as DamageText
 	get_tree().root.add_child(text_instance)
 	text_instance.global_position = position
 	text_instance.setup(amount, is_critical)

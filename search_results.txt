@@ -1,4 +1,0 @@
-./scripts/ui/DamageText.gd:21:	tween.tween_property(self, "position:y", position.y - 40, 0.8).set_trans(Tween.TRANS_QUAD)
-./grep_results.txt:1:./scripts/ui/DamageText.gd:	tween.tween_property(self, "position:y", position.y - 40, 0.8).set_trans(Tween.TRANS_QUAD)
-scripts/ui/DamageText.gd:21:	tween.tween_property(self, "position:y", position.y - 40, 0.8).set_trans(Tween.TRANS_QUAD)
-grep_results.txt:1:./scripts/ui/DamageText.gd:	tween.tween_property(self, "position:y", position.y - 40, 0.8).set_trans(Tween.TRANS_QUAD)

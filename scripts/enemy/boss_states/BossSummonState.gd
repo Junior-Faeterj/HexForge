@@ -5,7 +5,7 @@ func enter(_msg: Dictionary = {}) -> void:
 
 	if owner.boss_stats.minion_scene:
 		for i in range(3):
-			var minion = owner.boss_stats.minion_scene.instantiate() as Node
+			var minion: Node = owner.boss_stats.minion_scene.instantiate() as Node
 			owner.get_parent().add_child(minion)
 			minion.global_position = owner.global_position + Vector2(randf_range(-50, 50), randf_range(-50, 50))
 

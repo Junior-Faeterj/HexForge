@@ -12,7 +12,7 @@ func change_scene(scene_path: String) -> void:
 	scene_transition_started.emit()
 
 	# Show loading screen
-	var loading_screen = loading_screen_scene.instantiate() as Node
+	var loading_screen: Node = loading_screen_scene.instantiate() as Node
 	get_tree().root.add_child(loading_screen)
 
 	# Small delay to simulate transition

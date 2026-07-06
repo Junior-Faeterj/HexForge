@@ -7,7 +7,7 @@ func _ready() -> void:
 			reparent(caster)
 		position = Vector2.ZERO
 
-	var timer := get_tree().create_timer(3.0)
+	var timer: SceneTreeTimer = get_tree().create_timer(3.0)
 	timer.timeout.connect(queue_free)
 
 func _process(_delta: float) -> void:

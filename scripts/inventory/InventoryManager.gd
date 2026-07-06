@@ -22,8 +22,8 @@ func add_item(item: ItemResource, quantity: int = 1) -> bool:
 		# Find existing stack
 		for slot in slots:
 			if slot.item and slot.item.id == item.id and slot.quantity < item.max_stack:
-				var space := item.max_stack - slot.quantity
-				var to_add := min(space, quantity)
+				var space: int = item.max_stack - slot.quantity
+				var to_add: int = min(space, quantity)
 				slot.quantity += to_add
 				quantity -= to_add
 				if quantity <= 0:
@@ -32,9 +32,9 @@ func add_item(item: ItemResource, quantity: int = 1) -> bool:
 
 	# Find empty slot
 	while quantity > 0:
-		var empty_slot = _find_empty_slot()
+		var empty_slot: Dictionary = _find_empty_slot()
 		if not empty_slot.is_empty():
-			var to_add = min(item.max_stack if item.stackable else 1, quantity)
+			var to_add: int = min(item.max_stack if item.stackable else 1, quantity)
 			empty_slot.item = item
 			empty_slot.quantity = to_add
 			quantity -= to_add
@@ -54,14 +54,14 @@ func _find_empty_slot() -> Dictionary:
 func swap_slots(index1: int, index2: int) -> void:
 	if index1 < 0 or index1 >= slots.size() or index2 < 0 or index2 >= slots.size():
 		return
-	var temp = slots[index1]
+	var temp: Dictionary = slots[index1]
 	slots[index1] = slots[index2]
 	slots[index2] = temp
 	inventory_updated.emit()
 
 func get_save_data() -> Array:
-	var data = []
-	for slot in slots:
+	var data: Array = []
+	for slot: Dictionary in slots:
 		if slot.item:
 			data.append({"id": slot.item.id, "quantity": slot.quantity})
 		else:
@@ -70,9 +70,9 @@ func get_save_data() -> Array:
 
 func load_save_data(data: Array, item_database: Dictionary) -> void:
 	_initialize_slots()
-	for i in range(min(data.size(), slots.size())):
+	for i: int in range(min(data.size(), slots.size())):
 		if data[i]:
-			var item = item_database.get(data[i].id)
+			var item: ItemResource = item_database.get(data[i].id) as ItemResource
 			if item:
 				slots[i].item = item
 				slots[i].quantity = data[i].quantity

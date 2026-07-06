@@ -20,7 +20,7 @@ func _setup_grid() -> void:
 		child.queue_free()
 
 	for i in range(inventory_manager.slot_count):
-		var slot = SLOT_SCENE.instantiate() as InventorySlot
+		var slot: InventorySlot = SLOT_SCENE.instantiate() as InventorySlot
 		slot.slot_index = i
 		grid.add_child(slot)
 
@@ -29,7 +29,7 @@ func _setup_grid() -> void:
 func refresh_ui() -> void:
 	var slots = inventory_manager.slots
 	for i in range(slots.size()):
-		var slot_ui = grid.get_child(i) as InventorySlot
+		var slot_ui: InventorySlot = grid.get_child(i) as InventorySlot
 		slot_ui.update_slot(slots[i].item, slots[i].quantity)
 
 func request_swap(from_index: int, to_index: int) -> void:

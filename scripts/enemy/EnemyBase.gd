@@ -28,7 +28,7 @@ func _apply_stats() -> void:
 		health_component.max_health = stats.max_health
 
 	if detection_area:
-		var shape := detection_area.get_node("CollisionShape2D")
+		var shape: CollisionShape2D = detection_area.get_node("CollisionShape2D") as CollisionShape2D
 		if shape and shape.shape is CircleShape2D:
 			shape.shape.radius = stats.detection_range
 
@@ -43,7 +43,7 @@ func _on_hurt(data: AttackData) -> void:
 			fsm.transition_to("TakeDamage")
 
 func _play_hit_feedback() -> void:
-	var tween := create_tween()
+	var tween: Tween = create_tween()
 	tween.tween_property(sprite, "modulate", Color.RED, 0.1)
 	tween.tween_property(sprite, "modulate", Color.WHITE, 0.1)
 

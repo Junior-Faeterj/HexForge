@@ -17,9 +17,9 @@ func _ready() -> void:
 		health_component.health_changed.connect(_on_boss_health_changed)
 
 func _on_boss_health_changed(current: float, max_val: float) -> void:
-	var hp_percent := current / max_val
+	var hp_percent: float = current / max_val
 
-	var new_phase = current_phase
+	var new_phase: int = current_phase
 	if current_phase == 1 and hp_percent <= boss_stats.phase2_threshold:
 		new_phase = 2
 	elif current_phase == 2 and hp_percent <= boss_stats.phase3_threshold:
@@ -33,7 +33,7 @@ func _change_phase(new_phase: int) -> void:
 	phase_changed.emit(current_phase)
 
 	if phase_change_vfx:
-		var vfx = phase_change_vfx.instantiate() as Node
+		var vfx: Node = phase_change_vfx.instantiate() as Node
 		add_child(vfx)
 		vfx.position = Vector2.ZERO
 

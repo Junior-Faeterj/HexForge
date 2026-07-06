@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	for spell_name in cooldowns.keys():
 		if cooldowns[spell_name] > 0:
 			cooldowns[spell_name] -= delta
-			var res = _spell_cache.get(spell_name)
+			var res: MagicResource = _spell_cache.get(spell_name) as MagicResource
 			if res:
 				cooldown_updated.emit(res, cooldowns[spell_name])
 
@@ -49,7 +49,7 @@ func _execute_cast(spell_res: MagicResource, direction: Vector2) -> void:
 	if not spell_res.projectile_scene:
 		return
 
-	var spell_instance := spell_res.projectile_scene.instantiate() as SpellBase
+	var spell_instance: SpellBase = spell_res.projectile_scene.instantiate() as SpellBase
 
 	# Set properties BEFORE adding to tree to avoid _ready issues
 	spell_instance.resource = spell_res
@@ -65,15 +65,15 @@ func _execute_cast(spell_res: MagicResource, direction: Vector2) -> void:
 		AudioManager.play_sfx(spell_res.cast_sfx, player.global_position)
 
 func get_unlocked_magic_names() -> Array:
-	var names: Array = []
-	for spell in spells:
+	var names: Array[String] = []
+	for spell: MagicResource in spells:
 		names.append(spell.name)
 	return names
 
 func load_magic_data(names: Array, database: Dictionary) -> void:
 	spells.clear()
-	for n in names:
-		var res = database.get(n)
+	for n: String in names:
+		var res: MagicResource = database.get(n) as MagicResource
 		if res:
 			spells.append(res)
 			_spell_cache[res.name] = res

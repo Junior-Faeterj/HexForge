@@ -56,7 +56,7 @@ func _on_interact() -> void:
 
 func _on_level_up(_new_level: int) -> void:
 	if level_up_vfx:
-		var vfx = level_up_vfx.instantiate() as Node
+		var vfx: Node = level_up_vfx.instantiate() as Node
 		add_child(vfx)
 		vfx.position = Vector2.ZERO
 

@@ -5,20 +5,20 @@ extends SpellBase
 
 func _ready() -> void:
 	super._ready()
-	var timer := get_tree().create_timer(0.3)
+	var timer: SceneTreeTimer = get_tree().create_timer(0.3)
 	timer.timeout.connect(queue_free)
 
 	if resource:
-		ray.target_position = direction * resource.spell_range
+		ray.target_position = direction * (resource as MagicResource).spell_range
 		ray.force_raycast_update()
 
-		var end_point := ray.target_position
+		var end_point: Vector2 = ray.target_position
 		if ray.is_colliding():
 			end_point = to_local(ray.get_collision_point())
-			var collider = ray.get_collider()
-			var hurtbox = collider.get_node_or_null("Hurtbox")
+			var collider: Object = ray.get_collider()
+			var hurtbox: Node = collider.get_node_or_null("Hurtbox")
 			if hurtbox:
-				var data = AttackData.new()
+				var data: AttackData = AttackData.new()
 				data.damage = resource.damage
 				data.attacker = caster
 				data.attack_position = global_position

@@ -10,5 +10,5 @@ description = "Release a wave of energy around the caster."
 mana_cost = 30.0
 cooldown = 4.0
 damage = 50.0
-range = 100.0
+spell_range = 100.0
 projectile_scene = ExtResource("1_scene")
