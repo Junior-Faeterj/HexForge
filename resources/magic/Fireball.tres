@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MagicResource" load_steps=3 format=3 uid="uid://res_fireball"]
+
+[ext_resource type="PackedScene" uid="uid://fireball01" path="res://scenes/magic/Fireball.tscn" id="1_scene"]
+[ext_resource type="Script" path="res://resources/magic/MagicResource.gd" id="2_script"]
+
+[resource]
+script = ExtResource("2_script")
+name = "Fireball"
+description = "Hurl a ball of fire that explodes on impact."
+mana_cost = 15.0
+cooldown = 1.2
+damage = 25.0
+spell_range = 400.0
+projectile_scene = ExtResource("1_scene")

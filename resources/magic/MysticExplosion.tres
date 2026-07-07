@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MagicResource" load_steps=3 format=3 uid="uid://res_explosion"]
+
+[ext_resource type="PackedScene" uid="uid://mysticexplosion01" path="res://scenes/magic/MysticExplosion.tscn" id="1_scene"]
+[ext_resource type="Script" path="res://resources/magic/MagicResource.gd" id="2_script"]
+
+[resource]
+script = ExtResource("2_script")
+name = "Mystic Explosion"
+description = "Release a wave of energy around the caster."
+mana_cost = 30.0
+cooldown = 4.0
+damage = 50.0
+spell_range = 100.0
+projectile_scene = ExtResource("1_scene")

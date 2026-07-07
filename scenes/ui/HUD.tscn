@@ -1,0 +1,110 @@
+[gd_scene load_steps=6 format=3 uid="uid://hud01"]
+
+[ext_resource type="Script" path="res://scripts/ui/HUD.gd" id="1_hud"]
+[ext_resource type="PackedScene" uid="uid://pausemenu01" path="res://scenes/ui/PauseMenu.tscn" id="2_pause"]
+[ext_resource type="PackedScene" uid="uid://gameover01" path="res://scenes/ui/GameOverScreen.tscn" id="3_go"]
+[ext_resource type="PackedScene" uid="uid://victory01" path="res://scenes/ui/VictoryScreen.tscn" id="4_vic"]
+[ext_resource type="PackedScene" uid="uid://invui01" path="res://scenes/ui/InventoryUI.tscn" id="5_inv"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hud")
+
+[node name="Bars" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 80.0
+
+[node name="HealthBar" type="ProgressBar" parent="Bars"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+value = 100.0
+
+[node name="ManaBar" type="ProgressBar" parent="Bars"]
+modulate = Color(0, 0, 1, 1)
+layout_mode = 2
+value = 100.0
+
+[node name="Info" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 20.0
+offset_right = 100.0
+offset_bottom = 60.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="LevelLabel" type="Label" parent="Info"]
+layout_mode = 2
+text = "Level: 1"
+
+[node name="VSeparator" type="VSeparator" parent="Info"]
+layout_mode = 2
+
+[node name="XPLabel" type="Label" parent="Info"]
+layout_mode = 2
+text = "XP: 0 / 100"
+
+[node name="Debug" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 60.0
+grow_horizontal = 0
+
+[node name="FPSLabel" type="Label" parent="Debug"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "FPS: 60"
+
+[node name="Screens" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PauseMenu" parent="Screens" instance=ExtResource("2_pause")]
+layout_mode = 1
+
+[node name="GameOverScreen" parent="Screens" instance=ExtResource("3_go")]
+visible = false
+layout_mode = 1
+
+[node name="VictoryScreen" parent="Screens" instance=ExtResource("4_vic")]
+visible = false
+layout_mode = 1
+
+[node name="InventoryUI" parent="Screens" instance=ExtResource("5_inv")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0

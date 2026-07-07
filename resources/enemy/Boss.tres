@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BossStats" load_steps=3 format=3 uid="uid://res_boss"]
+
+[ext_resource type="PackedScene" uid="uid://slime01" path="res://scenes/enemy/Slime.tscn" id="1_slime"]
+[ext_resource type="Script" path="res://scripts/enemy/BossStats.gd" id="2_script"]
+
+[resource]
+script = ExtResource("2_script")
+phase2_threshold = 0.66
+phase3_threshold = 0.33
+teleport_cooldown = 5.0
+summon_cooldown = 12.0
+minion_scene = ExtResource("1_slime")
+max_health = 500.0
+movement_speed = 150.0
+attack_damage = 30.0
+detection_range = 600.0
+xp_reward = 1000

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://goblin01"]
+
+[ext_resource type="PackedScene" uid="uid://enemybase01" path="res://scenes/enemy/EnemyBase.tscn" id="1_base"]
+[ext_resource type="Resource" uid="uid://res_goblin" path="res://resources/enemy/Goblin.tres" id="2_stats"]
+
+[node name="Goblin" instance=ExtResource("1_base")]
+stats = ExtResource("2_stats")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0, 0.6, 0.1, 1) # Placeholder color

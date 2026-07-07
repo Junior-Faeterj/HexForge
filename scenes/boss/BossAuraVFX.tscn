@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bossauravfx01"]
+
+[ext_resource type="Script" path="res://scripts/utils/AutoVFX.gd" id="1_vfx"]
+
+[sub_resource type="Curve" id="Curve_1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1"]
+curve = SubResource("Curve_1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 40.0
+gravity = Vector3(0, -50, 0)
+scale_min = 2.0
+scale_max = 5.0
+alpha_curve = SubResource("CurveTexture_1")
+color = Color(0.8, 0, 0.2, 0.6)
+
+[node name="BossAuraVFX" type="Node2D"]
+script = ExtResource("1_vfx")
+auto_start = false
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_1")
+lifetime = 1.0
+fixed_fps = 60
